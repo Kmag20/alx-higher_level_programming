@@ -1,7 +1,9 @@
 #!/usr/bin/python3
+
 """
 Almost a circle in preparation for AirBnb clone project
 """
+
 
 class Base:
     """ Base Class """
