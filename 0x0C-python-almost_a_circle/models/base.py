@@ -20,8 +20,11 @@ class Base:
         if id is None:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
-        else:
+        else if id is not None:
             self.id = id
+        else:
+            if self is None:
+                
 
 if __name__ == "__main__":
 
