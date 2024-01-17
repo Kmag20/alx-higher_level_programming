@@ -1,118 +1,85 @@
 #!/usr/bin/python3
-"""Rectangle class based on the Base class"""
+"""Module for Rectangle class"""
 
 from models.base import Base
 
 
 class Rectangle(Base):
-    """Rectangle class"""
+    """Rectangle class inherits from Base.
+
+    Attributes:
+        __width (int): Width of the rectangle.
+        __height (int): Height of the rectangle.
+        __x (int): X-coordinate of the rectangle.
+        __y (int): Y-coordinate of the rectangle.
+    """
+
     def __init__(self, width, height, x=0, y=0, id=None):
+        """Initialize the Rectangle class.
+
+        Args:
+            width (int): Width of the rectangle.
+            height (int): Height of the rectangle.
+            x (int, optional): X-coordinate of the rectangle (default is 0).
+            y (int, optional): Y-coordinate of the rectangle (default is 0).
+            id (int, optional): Unique identifier (default is None).
+        """
         super().__init__(id)
-        if not isinstance(width, int):
-            raise TypeError("width must be an integer")
-        elif width <= 0:
-            raise ValueError("width must be > 0")
-        else:
-            self.__width = width
-        if not isinstance(height, int):
-            raise TypeError("height must be an integer")
-        elif height <= 0:
-            raise ValueError("height must be >= 0")
-        else:
-            self.__height = height
-        if not isinstance(x, int):
-            raise TypeError("x must be an integer")
-        elif x < 0:
-            raise ValueError("x must be >= 0")
-        else:
-            self.__x = x
-        if not isinstance(y, int):
-            raise TypeError("y must be an integer")
-        elif x < 0:
-            raise ValueError("y must be >= 0")
-        else:
-            self.__y = y
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
 
     @property
     def width(self):
-        """Width getter"""
+        """Getter method for width."""
         return self.__width
 
     @width.setter
-    def width(self, w):
-        """Width setter
-        Args:
-            w(int) -> Width of the rectangle
-        Raises:
-            TypeError -> if w is not an interger
-            valuError -> if w <= 0
-        """
-        if not isinstance(w, int):
-            raise TypeError("width must be an integer")
-        elif w <= 0:
-            raise ValueError("width must be > 0")
-        else:
-            self.__width = w
+    def width(self, value):
+        """Setter method for width."""
+        self.validate_integer("width", value, False)
+        self.__width = value
 
     @property
     def height(self):
-        """height getter"""
+        """Getter method for height."""
         return self.__height
 
     @height.setter
-    def height(self, h):
-        """Height setter
-        Args:
-            h(int) -> Height of the rectangle
-        Raises:
-            TypeError -> if h is not an integer
-            ValueError -> if h is <= 0
-        """
-        if not isinstance(h, int):
-            raise TypeError("height must be an integer")
-        elif h <= 0:
-            raise ValueError("height must be >= 0")
-        else:
-            self.__height = h
+    def height(self, value):
+        """Setter method for height."""
+        self.validate_integer("height", value, False)
+        self.__height = value
 
     @property
     def x(self):
-        """x getter"""
+        """Getter method for x."""
         return self.__x
 
     @x.setter
-    def x(self, x):
-        """x setter
-        Args:
-            x(int) -> value of x
-        Raises:
-            TypeError -> if x is not an int
-            ValueError -> if x < 0
-        """
-        if not isinstance(x, int):
-            raise TypeError("x must be an integer")
-        elif x < 0:
-            raise ValueError("x must be >= 0")
-        else:
-            self.__x = x
+    def x(self, value):
+        """Setter method for x."""
+        self.validate_integer("x", value)
+        self.__x = value
 
     @property
     def y(self):
-        """y getter"""
+        """Getter method for y."""
         return self.__y
 
     @y.setter
-    def y(self, y):
-        """y setter
-        Args:
-            y(int) -> value of y
-        Raises:
-            TypeError -> if y is not an integer
-            ValueError -> if y < 0
-        """
-        if not isinstance(y, int):
-            raise TypeError("y must be an integer")
-        elif x < 0:
-            raise ValueError("y must be >= 0")
-        else:
-            self.__y = y
+    def y(self, value):
+        """Setter method for y."""
+        self.validate_integer("y", value)
+        self.__y = value
+
+    def validate_integer(self, name, value, positive=True):
+        """Method for validating all setter methods and instantiation"""
+
+        if not isinstance(value, (int, bool)):
+            raise TypeError("{} must be an integer".format(name))
+        if positive and value < 0:
+            raise ValueError("{} must be >= 0".format(name))
+        elif not positive and value <= 0:
+            raise ValueError("{} must be > 0".format(name))
