@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Module for Base class"""
-import json
+import json, os
 
 
 class Base:
@@ -69,3 +69,13 @@ class Base:
             new = cls(5)
         new.update(**dictionary)
         return new
+
+    @classmethod
+    def load_from_file(cls):
+        """ returns a ist of instances """
+        file = '{}.json'.format(cls.__name__)
+        if not path.isFile(file):
+            return []
+        with open(file, 'r', encoding='utf-8') as write_file:
+            return [cls.create(**d) for d
+                    in cls.from_json_string(write_file.read())]
