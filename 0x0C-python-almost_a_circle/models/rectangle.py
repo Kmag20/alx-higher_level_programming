@@ -120,3 +120,7 @@ class Rectangle(Base):
             for arg in args:
                 setattr(self, attribute[i], arg)
                 i += 1
+        else:
+            if kwargs:
+                for arg, value in kwargs.items():
+                    setattr(self, arg, value)
