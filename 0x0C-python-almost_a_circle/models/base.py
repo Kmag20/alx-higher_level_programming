@@ -149,7 +149,7 @@ class Base:
 
         return list_ins
 
-     # @staticmethod
+    # @staticmethod
     # def draw(list_rectangles, list_squares):
     #     """
     #     Draw rectangle or square from turtle module
