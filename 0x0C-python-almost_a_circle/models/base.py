@@ -24,3 +24,11 @@ class Base:
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
+
+    @staticmethod
+    def to_json_dictionary(list_dictionaries):
+        """ returns json representation of list dicts """
+        if list_dictionaries is None or not list_dictionaries:
+            return "[]"
+        else:
+            return json.dumps(list_dictionaries)
