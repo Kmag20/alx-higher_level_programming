@@ -57,3 +57,15 @@ class Base:
         if not json_string:
             return []
         return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """ Create new instance from dictionary w/o using eva; """
+        from models.rectangle import Rectangle
+        from models.square import Square
+        if cls.__name__ == 'Rectangle':
+            new = cls(5, 8)
+        else:
+            new = cls(5)
+        new.update(**dictionary)
+        return new
