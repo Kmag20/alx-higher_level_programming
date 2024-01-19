@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Module for Base class"""
-import json, os
+import json
+import os
 
 
 class Base:
@@ -74,7 +75,7 @@ class Base:
     def load_from_file(cls):
         """ returns a ist of instances """
         file = '{}.json'.format(cls.__name__)
-        if not path.isFile(file):
+        if not os.path.isFile(file):
             return []
         with open(file, 'r', encoding='utf-8') as write_file:
             return [cls.create(**d) for d
