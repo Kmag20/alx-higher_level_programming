@@ -91,8 +91,12 @@ class Rectangle(Base):
         return self.__width * self.__height
 
     def display(self):
-        """ prints the rectangle instance using #(hashes) """
+        """ prints the rectangle instance using #(hashes) inclusive of x a
+        nd y cartisian planes"""
+        for _ in range(self.__y):
+            print()
         for _ in range(self.__height):
+            print("".join(" " for _ in range(self.__x)), end="")
             for _ in range(self.__width):
                 print("#", end="")
             print()
@@ -106,3 +110,27 @@ class Rectangle(Base):
                 self.__y,
                 self.__width,
                 self.__height)
+
+    def update(self, *args, **kwargs):
+        """ assigns an argument to each attribute in the *args """
+
+        i = 0
+        attribute = ["id", "width", "height", "x", "y"]
+        if args:
+            for arg in args:
+                setattr(self, attribute[i], arg)
+                i += 1
+        else:
+            if kwargs:
+                for arg, value in kwargs.items():
+                    setattr(self, arg, value)
+
+    def to_dictionary(self):
+        """ returns the dictionary representaion of a Rectangle """
+        attributes = ["x", "y", "id", "height", "width"]
+        dict = {}
+
+        for key in attributes:
+            dict[key] = getattr(self, key)
+
+        return dict
