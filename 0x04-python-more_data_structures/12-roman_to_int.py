@@ -14,15 +14,29 @@ def roman_to_int(roman_string):
             break
     for roman, value in hundreds.items():
         if roman in roman_string:
-            number += value
+            if 'XC' in roman_string:
+                number += 0
+                continue
+            if 'CD' in roman_string:
+                number += hundreds['CD']
+            else:
+                number += value
             break
     for roman, value in tens.items():
         if roman in roman_string:
-            number += value
+            if 'IX' in roman_string:
+                number += 0
+            if 'XL' in roman_string:
+                number += tens['XL']
+            else: 
+                number += value
             break
     for roman, value in units.items():
         if roman in roman_string:
-            number += value
+            if 'IV' in roman_string:
+                number += units['IV']
+            else:    
+                number += value
             break
 
     return (number)
