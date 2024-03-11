@@ -10,4 +10,6 @@ if (!isNaN(square) && square >= 0) {
     }
     console.log(line);
   }
+} else {
+  console.log('Missing size');
 }
