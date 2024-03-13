@@ -2,4 +2,4 @@
 
 def raise_exception():
     """ raises a type exception """
-    rasie TypeError
+    raise TypeError
