@@ -12,8 +12,7 @@ if __name__ == '__main__':
                            port=3306)
     cursor = conn.cursor()
     cursor.execute("SELECT * \
-                   FROM states \
-                   WHERE CONVERT(`name` USING Latin1) \
-                   COLLATE Latin1_General_CS = '{}';".format(sys.argv[4]))
+                 FROM `states` \
+                WHERE BINARY `name` = '{}'".format(sys.argv[4]))
     query = cursor.fetchall()
     [print(row) for row in query]
