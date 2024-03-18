@@ -11,6 +11,9 @@ if __name__ == '__main__':
                            db=sys.argv[3],
                            port=3306)
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM states WHERE name = %s;', (sys.argv[4],))
+    cursor.execute("SELECT * \
+    FROM states \
+    WHERE CONVERT(`name` USING Latin1) \
+    COLLATE Latin1_General_CS = '{}';".format(sys.argv[4]))
     query = cursor.fetchall()
     [print(row) for row in query]
