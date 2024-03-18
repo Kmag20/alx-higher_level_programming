@@ -11,7 +11,10 @@ if __name__ == '__main__':
                            port=3306)
 
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM states WHERE \
-                   name COLLATE Latin1_General_CS LIKE 'N%' ORDER BY id ASC")
+    cursor.execute("SELECT * \
+    FROM states \
+    WHERE CONVERT(`name` USING Latin1) \
+    COLLATE Latin1_General_CS \
+    LIKE 'N%';")
     query = cursor.fetchall()
     [print(row) for row in query]
