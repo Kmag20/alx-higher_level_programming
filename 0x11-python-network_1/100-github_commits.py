@@ -18,4 +18,4 @@ if __name__ == "__main__":
             print("{}: {}".format(json_o[i].get('sha'), json_o[i].get('commit')
                                   .get('author').get('name')))
     except:
-        pass
+        print('Error')
