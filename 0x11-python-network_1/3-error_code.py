@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """
-Sends a req to a URL and handles the response and also
-the error
+Python script that takes in a URL, sends a request and displays
+the value of the X-Request-Id variable found in the header
+(handling HTTP errors)import urllib.error
 """
-import urllib.error
 import urllib.request
 import sys
 
