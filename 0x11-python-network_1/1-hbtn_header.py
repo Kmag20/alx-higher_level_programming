@@ -10,4 +10,10 @@ with urllib.request.urlopen(argv[1]) as response:
     headers = response.info()
     for var, val in headers._headers:
         if var == 'X-Request-Id':
-            print(val)
+            x_request_id = val
+            break
+
+    if x_request_id is None:
+        print('X-Request-Id header not found')
+    else:
+        print(x_request_id)
