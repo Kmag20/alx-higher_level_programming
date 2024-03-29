@@ -9,6 +9,7 @@ import urllib.error
 import urllib.request
 import sys
 
+
 url = sys.argv[1]
 req = urllib.request.Request(url)
 
