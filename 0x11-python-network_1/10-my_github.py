@@ -5,7 +5,7 @@ and uses the Github API to display the user id
 """
 import requests
 import sys
-from request.auth  import HTTPBasicAuth
+from requests.auth  import HTTPBasicAuth
 
 
 if __name__ == '__main__':
