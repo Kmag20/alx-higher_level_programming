@@ -10,7 +10,7 @@ request.get(url, (err, res, body) => {
 
     const moviesWithWedgeAntilles = results.filter(movie => {
       const characters = movie.characters;
-      return characters.includes(wedgeAntillesURL);
+      return characters.some(character => character.includes('/18/');
     });
 
     console.log(`${moviesWithWedgeAntilles.length}`);
