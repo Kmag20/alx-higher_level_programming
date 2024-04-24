@@ -1,7 +1,6 @@
 #!/usr/bin/node
 const request = require('request');
 const url = process.argv[2];
-const wedgeAntillesURL = 'https://swapi-api.alx-tools.com/api/people/18/';
 
 request.get(url, (err, res, body) => {
   if (!err && res.statusCode === 200) {
