@@ -1,7 +1,6 @@
 #!/usr/bin/node
 const request = require('request');
 const url = 'https://swapi-api.alx-tools.com/api/films/';
-const wedgeAntillesURL = 'https://swapi-api.alx-tools.com/api/people/18/';
 
 request.get(url, (err, res, body) => {
   if (!err && res.statusCode === 200) {
@@ -10,7 +9,7 @@ request.get(url, (err, res, body) => {
 
     const moviesWithWedgeAntilles = results.filter(movie => {
       const characters = movie.characters;
-      return characters.includes(wedgeAntillesURL);
+      return characters.endsWith('/18/');
     });
 
     console.log(`${moviesWithWedgeAntilles.length}`);
