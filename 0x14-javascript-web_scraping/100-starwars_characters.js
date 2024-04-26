@@ -5,7 +5,7 @@ const index = parseInt(process.argv[2], 10);
 request.get(url, (err, res, body) => {
   if (!err && res.statusCode === 200) {
     const data = JSON.parse(body);
-    const characters = data.results[index].characters;
+    const characters = data.results[index - 1].characters;
     characters.forEach(character => {
       request.get(character, (err, res, body) => {
         const charName = JSON.parse(body).name;
