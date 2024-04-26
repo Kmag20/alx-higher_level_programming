@@ -1,16 +1,31 @@
-#!/usr/bin/node#!/usr/bin/node
+#!/usr/bin/node
 const request = require('request');
-request(process.argv[2], function (error, response, body) {
-  if (!error) {
-    const todos = JSON.parse(body);
-    let completed = {};
-    todos.forEach((todo) => {
-      if (todo.completed && completed[todo.userId] === undefined) {
-        completed[todo.userId] = 1;
-      } else if (todo.completed) {
-        completed[todo.userId] += 1;
+const url = process.argv[2];
+request.get(url, (err, res, body) => {
+  if (!err && res.statusCode === 200) {
+    const data = JSON.parse(body);
+    const objDict = {};
+    let highest_id = 0;
+    data.forEach(todo => {
+      if (todo['userId'] > highest_id) {
+        highest_id = todo['userId'];
       }
     });
-    console.log(completed);
+    for (let i = 1; i <= highest_id; ++i) {
+      objDict[i.toString()] = 0;
+    }
+    data.forEach(todo => {
+      if (todo.completed) {
+        const idStr = todo.userId.toString();
+        objDict[idStr] += 1;
+      }
+    });
+
+    const flattenedValues = Object.values(objDict);
+    if (flattenedValues.every(num => num === 0)) {
+      console.log('{}');
+    } else {
+      console.log(objDict);
+    }
   }
 });
