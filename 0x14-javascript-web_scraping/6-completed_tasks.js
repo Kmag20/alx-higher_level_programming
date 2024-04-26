@@ -5,13 +5,13 @@ request.get(url, (err, res, body) => {
   if (!err && res.statusCode === 200) {
     const data = JSON.parse(body);
     const objDict = {};
-    let highest_id = 0;
+    let highestId = 0;
     data.forEach(todo => {
-      if (todo['userId'] > highest_id) {
-        highest_id = todo['userId'];
+      if (todo.userId > highestId) {
+        highestId = todo.userId;
       }
     });
-    for (let i = 1; i <= highest_id; ++i) {
+    for (let i = 1; i <= highestId; ++i) {
       objDict[i.toString()] = 0;
     }
     data.forEach(todo => {
